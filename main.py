@@ -83,3 +83,4 @@ if __name__ == "__main__":
     model_list = ["command-r", "llama3"]
     for model_name in model_list:
         main(model_name)
+    print("run complete")
