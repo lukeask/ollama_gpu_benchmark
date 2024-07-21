@@ -3,6 +3,7 @@ import ollama
 import torch
 
 
+<<<<<<< HEAD
 def chat_evaluation(model_name, BATCH_ITERS=8):
     SHARED_PROMPT = (
         "You are a friendly chatbot. Have a nice conversation with the user."
@@ -14,11 +15,30 @@ def chat_evaluation(model_name, BATCH_ITERS=8):
     context_count = len(messages_A[0]["content"])
     data = []
 
+=======
+def chat_evaluation(model_name, BATCH_ITERS = 8):
+    SHARED_PROMPT = 'You are a friendly chatbot. Have a nice conversation with the user.'
+    messages_A=[
+        {
+            'role': 'system',
+            'content': SHARED_PROMPT
+        }]
+    
+    messages_B = [{
+            'role': 'system',
+            'content': SHARED_PROMPT
+        }]
+
+    context_count = len(messages_A[0]["content"])
+    data = []
+    
+>>>>>>> 3845d99 (benchmark code)
     for i in range(BATCH_ITERS):
         ithstart = time.time()
         if i % 2 == 0:
             print(messages_A)
             response = ollama.chat(model=model_name, messages=messages_A)
+<<<<<<< HEAD
             messages_B.append(
                 {"role": "user", "content": response["message"]["content"]}
             )
@@ -38,6 +58,21 @@ def chat_evaluation(model_name, BATCH_ITERS=8):
         ithend = time.time()
         ithelapsed = ithend - ithstart
         chars_inferenced_this_round = len(response["message"]["content"])
+=======
+            messages_B.append({'role': 'user', 'content': response["message"]["content"]})
+            messages_A.append({'role': 'assistant', 'content': response["message"]["content"]})
+        if i % 2 == 1:
+            print(messages_B)
+            response = ollama.chat(model=model_name, messages=messages_B)
+            messages_A.append({'role': 'user', 'content': response["message"]["content"]})
+            messages_B.append({'role': 'assistant', 'content': response["message"]["content"]})
+        
+        ithend = time.time()
+        ithelapsed = ithend - ithstart
+        chars_inferenced_this_round = len(response["message"]["content"])
+        
+
+>>>>>>> 3845d99 (benchmark code)
 
         datum = (ithelapsed, context_count, chars_inferenced_this_round)
         with open(f"./chat_evaluation_data_{model_name}.txt", "a") as f:
@@ -60,6 +95,10 @@ def make_headers(model_name):
     else:
         header += "\nCPU"
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 3845d99 (benchmark code)
     header += "\nTime Elapsed (s), Context Count, Characters Inferenced"
     header += "\n-----------------------------------\n"
 
@@ -69,6 +108,7 @@ def make_headers(model_name):
 def main(model_name):
     with open(f"./chat_evaluation_data_{model_name}.txt", "w") as f:
         f.write(make_headers(model_name))
+<<<<<<< HEAD
 
     ollama.pull(model_name)
     # ensure model is loaded
@@ -78,9 +118,28 @@ def main(model_name):
     for _ in range(3):
         data = chat_evaluation(model_name)
 
+=======
+    
+    ollama.pull(model_name)
+    #ensure model is loaded
+    ollama.generate(model=model_name, prompt="Say one word")
+    print("starting evaluation")
+    #evaluate model
+    for _ in range(3):
+        data = chat_evaluation(model_name)
+
+    
+
+
+
+>>>>>>> 3845d99 (benchmark code)
 
 if __name__ == "__main__":
     model_list = ["command-r", "llama3"]
     for model_name in model_list:
+<<<<<<< HEAD
         main(model_name)
     print("run complete")
+=======
+        main(model_name)
+>>>>>>> 3845d99 (benchmark code)
