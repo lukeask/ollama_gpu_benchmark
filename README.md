@@ -41,12 +41,15 @@ Note that I am running the P40 at 125W as I have a good cooling solution setup.
 ![plots/llama3](plots/llama3.png)
 ![plots/command-r](plots/command-r.png)
 
+I ended the 4x 1660S run early because the container was overpriced and it was taking minutes for each completion, but the full eval ran on all other cards.
+
 #### Extended Data from P40
 
 Here is data from an extended run of 220 completions on my P40. Note that I am running it at 125W while I'm waiting on a better cooling solution. 
+
 ![plots/p40](plots/p40.png)
 
-I ended the 4x 1660S run early because the container was overpriced and it was taking minutes for each completion, but the full eval ran on all other cards.
+
 
 ## Running the Benchmark
 
