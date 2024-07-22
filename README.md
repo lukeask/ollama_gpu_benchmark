@@ -5,7 +5,7 @@
 
 The evaluation uses system prompts to instruct two copies of the model to have a conversation with one another. It records the time between making a completion request and recieving the completion, and the length of the completion in characters. While it's less standard to measure characters/second over than tokens/second,breaking with the tokens/second convention makes the benchmark model agnostic. 
 
-I tested two quantized models available from ollama: command-r 35b Q4_0 and llama3 8b Q4_0. I included the former as I use it most for code completions and text formatting as of July 2024, and the latter for its popularity. The raw data can be seen further down, or in the data_analysis directory. 
+I tested two quantized models available from ollama: command-r 35b Q4_0 and llama3 8b Q4_0. I included the former as I find it is the best open weight model for code completions and text formatting as of July 2024, and the latter for its popularity. The raw data can be seen further down, or in the data_analysis directory. 
 
 
 ## GPUs Ranked
