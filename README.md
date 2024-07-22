@@ -19,8 +19,9 @@ The following chart sums things up nicely:
 
 ![plots/llama3_bar](plots/llama3_bar.png)
 
+The height of these bars is the estimated output characters/second at 4000 characters of context. This estimate is found by fitting a line to the characters/second at all context lengths, and evaluating at 4000 tokens. 
 
-To generate the above charts, I fit a line to the context length to output characters/second graphs for all my collected data and evaluated it at 4000 tokens. Note that I am running the P40 at 125W, as I'm currently waiting on a better cooling solution. 
+Note that I am running the P40 at 125W as I have a good cooling solution setup. 
 
 
 
